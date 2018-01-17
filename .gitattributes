@@ -2,23 +2,23 @@
 # https://github.com/applicationsdev/Laravel-MySQL-Advanced-RESTful-API-for-eCommerce
 # GPL-3.0
 
-# Line endings normalized in text/script files
+# Line endings get normalized in text/script files
 * text=auto
 
-# Exclude from processing
+# Exclude from above normalization-processing
 *.jpg binary
 *.png binary
 *.gif binary
 *.ico binary
 *.pdf binary
 
-# Describe PHP-Laravel file types
+# Linguist-language description for primary file types
 *.php linguist-language=PHP
 
-# Linguist-vendor commited paths
+# Linguist-vendor description for commited paths
 public/* linguist-vendored
 
-# Linguist-vendor file types
+# Linguist-vendor description for commited file types
 *.css linguist-vendored
 *.scss linguist-vendored
 *.less linguist-vendored

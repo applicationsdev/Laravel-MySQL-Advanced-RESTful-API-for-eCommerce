@@ -1,4 +1,8 @@
-/node_modules
+# Applications Developer
+# https://github.com/applicationsdev/Laravel-MySQL-Advanced-RESTful-API-for-eCommerce
+# GPL-3.0
+
+# Default Laravel development environment settings - https://laravel.com
 /public/hot
 /public/storage
 /storage/*.key
@@ -7,6 +11,22 @@
 /.vagrant
 Homestead.json
 Homestead.yaml
-npm-debug.log
-yarn-error.log
 .env
+# npm-debug.log
+# yarn-error.log
+#/node_modules
+
+# My settings for Linux development environments
+**/node_modules
+*.log
+
+# Common settings for MacOS dev. environments
+.DS_Store
+._*
+.Trashes
+
+# Common settings for Windows dev. environments
+[Dd]esktop.ini
+*umbs.db
+
+# Edits & more settings needed, depending on current OS & IDE
