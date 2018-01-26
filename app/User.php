@@ -1,5 +1,7 @@
 <?php
 
+// SECURITY WARNING: hardened settings can be applied in production environments
+
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
@@ -9,21 +11,22 @@ class User extends Authenticatable
 {
     use Notifiable;
     
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    // Specify in explicit way the DB table that is associated with the model
+    protected $table = 'users';
+    
+    // Not mass assignable attributes
+    protected $guarded = ['state'];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    // Hidden attributes from model array & JSON representations
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'verify_token',
+        //'state', // Uncomment this attribute in production environment
+        'remember_token'
     ];
+    
+    protected function createVerifyToken()
+    {
+        return str_random(12);
+    }
 }
