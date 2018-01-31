@@ -15,7 +15,23 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
+            
+            $table->string('title', 100)->default('New Product');
+            $table->string('image_thumbnail', 300)->nullable();
+            $table->string('description_short', 500)->nullable();
+            
+            $table->decimal('available_qty', 3, 0)->unsigned()->default(0);
+            $table->decimal('catalog_price', 6, 2)->unsigned()->default(0.00);
+            
+            $table->string('status', 50)->default(Config::get('customConstants.item.status.is_not_available'));
+            
+            $table->integer('category_id')->unsigned();
+            $table->integer('merchant_id')->unsigned();
+            
             $table->timestamps();
+            
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('merchant_id')->references('id')->on('users');
         });
     }
 
