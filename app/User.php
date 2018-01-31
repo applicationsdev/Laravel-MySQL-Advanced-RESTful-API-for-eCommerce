@@ -14,8 +14,12 @@ class User extends Authenticatable
     // Specify in explicit way the DB table that is associated with the model
     protected $table = 'users';
     
-    // Not mass assignable attributes
-    protected $guarded = ['state'];
+    // Mass assignable attributes
+    protected $fillable = [
+        'name',
+        'email',
+        'password'
+    ];
 
     // Hidden attributes from model array & JSON representations
     protected $hidden = [

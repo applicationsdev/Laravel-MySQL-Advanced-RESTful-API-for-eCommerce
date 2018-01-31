@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('verify_token')->default(User::createVerifyToken());
-            $table->string('state')->default(Config::get('customConstants.user.state.is_not_verified'));
+            $table->string('state', 50)->default(Config::get('customConstants.user.state.is_not_verified'));
             $table->rememberToken();
             $table->timestamps();
         });
