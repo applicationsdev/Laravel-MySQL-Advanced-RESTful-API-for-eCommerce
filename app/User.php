@@ -31,6 +31,6 @@ class User extends Authenticatable
     
     protected function createVerifyToken()
     {
-        return str_random(12);
+        return str_random(12); // Longer token can be used in production environment
     }
 }

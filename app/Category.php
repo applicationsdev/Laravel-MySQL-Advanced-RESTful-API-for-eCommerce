@@ -9,7 +9,12 @@ use App\Item;
 class Category extends Model
 {
     // Mass assignable attributes
-    protected $fillable = ['title'];
+    protected $fillable = [
+        'title',
+        'image_thumbnail',
+        'description_short',
+        'status'
+    ];
     
     // DB relations
     public function items()

@@ -19,5 +19,12 @@ return [
             'is_not_available' => 'Currently Out Of Stock',
             'is_available' => 'In Stock'
         ]
+    ],
+    
+    'category' => [
+        'status' => [
+            'is_not_active' => 'Not Active',
+            'is_active' => 'Active'
+        ]
     ]
 ];

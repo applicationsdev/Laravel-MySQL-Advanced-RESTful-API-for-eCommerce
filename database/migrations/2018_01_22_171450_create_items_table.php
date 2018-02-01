@@ -20,7 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('image_thumbnail', 300)->nullable();
             $table->string('description_short', 500)->nullable();
             
-            $table->decimal('available_qty', 3, 0)->unsigned()->default(0);
+            $table->integer('available_qty')->unsigned()->default(0);
             $table->decimal('catalog_price', 6, 2)->unsigned()->default(0.00);
             
             $table->string('status', 50)->default(Config::get('customConstants.item.status.is_not_available'));

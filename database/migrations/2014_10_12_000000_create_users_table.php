@@ -16,9 +16,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('name', 50);
+            $table->string('email', 100)->unique();
+            $table->string('password', 100);
             $table->string('verify_token')->default(User::createVerifyToken());
             $table->string('state', 50)->default(Config::get('customConstants.user.state.is_not_verified'));
             $table->rememberToken();
