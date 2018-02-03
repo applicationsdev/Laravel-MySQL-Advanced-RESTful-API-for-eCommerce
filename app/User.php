@@ -18,7 +18,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password'
+        'password',
+        'photo',
+        'address_line1',
+        'address_line2',
+        'country_code',
+        'postal_code',
+        'tel'
     ];
 
     // Hidden attributes from model array & JSON representations
@@ -32,5 +38,15 @@ class User extends Authenticatable
     protected function createVerifyToken()
     {
         return str_random(12); // Longer token can be used in production environment
+    }
+    
+    protected function isNotVerified()
+    {
+        // state checker
+    }
+    
+    protected function isBlocked()
+    {
+        // state checker
     }
 }
