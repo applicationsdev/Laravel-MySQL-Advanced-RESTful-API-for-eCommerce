@@ -7,6 +7,7 @@ return [
             'is_not_verified' => 'Account is not verified',
             'is_blocked' => 'Account is blocked',
             'is_client' => 'Client',
+            'is_not_verified_merchant' => 'Not verified Merchant',
             'is_merchant' => 'Merchant',
             'is_moderator' => 'Moderator',
             'is_admin' => 'Admin'
