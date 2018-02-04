@@ -24,7 +24,7 @@ class User extends Authenticatable
         'address_line2',
         'country_code',
         'postal_code',
-        'tel'
+        'tel',
     ];
 
     // Hidden attributes from model array & JSON representations
@@ -32,21 +32,26 @@ class User extends Authenticatable
         'password',
         'verify_token',
         //'state', // Uncomment this attribute in production environment
-        'remember_token'
+        'remember_token',
     ];
     
+    // Token generator for User 'state' verification (Account, Merchant, Moderator)
     protected function createVerifyToken()
     {
         return str_random(12); // Longer token can be used in production environment
     }
     
+    // User 'state' checkers (part of security policy)
     protected function isNotVerified()
     {
-        // state checker
+        return $this->state == Config::get('customConstants.user.state.is_not_verified');
     }
-    
+    protected function isNotActive()
+    {
+        return $this->state == Config::get('customConstants.user.state.is_not_active');
+    }
     protected function isBlocked()
     {
-        // state checker
+        return $this->state == Config::get('customConstants.user.state.is_blocked');
     }
 }
