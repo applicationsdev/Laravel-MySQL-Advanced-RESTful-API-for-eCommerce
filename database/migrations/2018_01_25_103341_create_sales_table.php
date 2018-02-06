@@ -19,12 +19,10 @@ class CreateSalesTable extends Migration
             $table->decimal('value', 6, 2)->unsigned()->default(0.00);
             $table->string('status', 50)->nullable();
             
-            $table->integer('order_id')->unsigned();
             $table->integer('merchant_id')->unsigned();
             
             $table->timestamps();
             
-            $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('merchant_id')->references('id')->on('users');
         });
     }

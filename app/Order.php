@@ -4,7 +4,7 @@ namespace App;
 
 // Requires
 use Illuminate\Database\Eloquent\Model;
-use App\Sale;
+use App\OrderItem;
 use App\Client;
 
 class Order extends Model
@@ -13,13 +13,13 @@ class Order extends Model
     protected $fillable = [
         'value',
         'status',
-        'client_id'
+        'client_id',
     ];
     
     // DB relations
-    public function sales()
+    public function orderItems()
     {
-        return $this->hasMany(Sale::class);
+        return $this->hasMany(OrderItem::class);
     }
     
     public function client()

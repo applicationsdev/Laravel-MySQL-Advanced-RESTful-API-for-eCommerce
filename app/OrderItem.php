@@ -5,6 +5,7 @@ namespace App;
 // Requires
 use Illuminate\Database\Eloquent\Model;
 use App\Item;
+use App\Order;
 use App\Sale;
 
 class OrderItem extends Model
@@ -22,6 +23,11 @@ class OrderItem extends Model
     public function item()
     {
         return $this->belongsTo(Item::class);
+    }
+    
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
     }
     
     public function sale()
