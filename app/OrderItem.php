@@ -14,7 +14,8 @@ class OrderItem extends Model
         'qty',
         'value',
         'item_id',
-        'sale_id'
+        'order_id',
+        'sale_id',
     ];
     
     // DB relations
