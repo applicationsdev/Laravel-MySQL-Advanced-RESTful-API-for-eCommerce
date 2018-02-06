@@ -1,6 +1,12 @@
 ### About
 Advanced RESTful API for eCommerce with Laravel & MySQL
 
+### DBMS
+Current app version is based on a single Relational Database
+
+The database is designed according to this simplified Entity Relationship Diagram
+![Entity Relationship Diagram](./.documentation/erd.png)
+
 ### Get started
 coming soon..
 
