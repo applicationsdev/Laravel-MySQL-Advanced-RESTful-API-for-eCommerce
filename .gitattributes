@@ -1,5 +1,5 @@
 # Applications Developer
-# https://github.com/applicationsdev/Laravel-MySQL-Advanced-RESTful-API-for-eCommerce
+# https://github.com/applicationsdev/eCommerce-Laravel-MySQL-RESTful-API
 
 # Line endings get normalized in text/script files
 * text=auto
@@ -14,7 +14,7 @@
 # Linguist-language description for primary file types
 *.php linguist-language=PHP
 
-# Linguist-vendor description for commited paths
+# Linguist-vendor description for commited directories
 public/* linguist-vendored
 
 # Linguist-vendor description for commited file types
@@ -31,4 +31,6 @@ public/* linguist-vendored
 *.vue linguist-vendored
 
 # Documentation files
+# Linguist-documentation description for commited directories & file types
+.documentation/*
 *.md linguist-documentation

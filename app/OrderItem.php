@@ -6,7 +6,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Item;
 use App\Order;
-use App\Sale;
 
 class OrderItem extends Model
 {
@@ -16,22 +15,15 @@ class OrderItem extends Model
         'value',
         'item_id',
         'order_id',
-        'sale_id',
     ];
     
-    // DB relations
+    // DB relationships
     public function item()
     {
         return $this->belongsTo(Item::class);
     }
-    
     public function order()
     {
         return $this->belongsTo(Order::class);
-    }
-    
-    public function sale()
-    {
-        return $this->belongsTo(Sale::class);
     }
 }

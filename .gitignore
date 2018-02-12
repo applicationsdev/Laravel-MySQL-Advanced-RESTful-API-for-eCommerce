@@ -1,7 +1,7 @@
 # Applications Developer
-# https://github.com/applicationsdev/Laravel-MySQL-Advanced-RESTful-API-for-eCommerce
+# https://github.com/applicationsdev/eCommerce-Laravel-MySQL-RESTful-API
 
-# Default Laravel development environment settings - https://laravel.com
+# Default Laravel installation .gitignore settings
 /public/hot
 /public/storage
 /storage/*.key

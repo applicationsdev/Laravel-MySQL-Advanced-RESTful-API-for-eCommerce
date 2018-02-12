@@ -14,6 +14,8 @@ use App\User;
 |
 */
 
+// To simplify testing, only some of User 'state' cases are created
+
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
@@ -32,7 +34,6 @@ $factory->define(User::class, function (Faker $faker) {
             Config::get('customConstants.user.state.is_not_verified'),
             Config::get('customConstants.user.state.is_client'),
             Config::get('customConstants.user.state.is_merchant'),
-            Config::get('customConstants.user.state.is_moderator'),
         ]),
         
         'remember_token' => str_random(10),

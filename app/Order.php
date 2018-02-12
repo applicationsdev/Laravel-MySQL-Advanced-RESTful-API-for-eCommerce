@@ -4,8 +4,8 @@ namespace App;
 
 // Requires
 use Illuminate\Database\Eloquent\Model;
-use App\OrderItem;
 use App\Client;
+use App\OrderItem;
 
 class Order extends Model
 {
@@ -16,14 +16,13 @@ class Order extends Model
         'client_id',
     ];
     
-    // DB relations
-    public function orderItems()
-    {
-        return $this->hasMany(OrderItem::class);
-    }
-    
+    // DB relationships
     public function client()
     {
         return $this->belongsTo(Client::class);
+    }
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }

@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     
-    // Specify in explicit way the DB table that is associated with the model
+    // Specify in explicit way the DB table that is associated with this model
     protected $table = 'users';
     
     // Mass assignable attributes
@@ -36,22 +36,32 @@ class User extends Authenticatable
     ];
     
     // Token generator for User 'state' verification (Account, Merchant, Moderator)
-    protected function createVerifyToken()
+    public function createVerifyToken()
     {
         return str_random(12); // Longer token can be used in production environment
     }
     
-    // User 'state' checkers (part of security policy)
-    protected function isNotVerified()
+    // 'state' checkers (part of security policy)
+    // To simplify testing of current app version (development-testing environment),
+    // only some of User 'state' checkers are included
+    public function isNotVerified()
     {
         return $this->state == Config::get('customConstants.user.state.is_not_verified');
     }
-    protected function isNotActive()
+    public function isNotActive()
     {
         return $this->state == Config::get('customConstants.user.state.is_not_active');
     }
-    protected function isBlocked()
+    public function isBlocked()
     {
         return $this->state == Config::get('customConstants.user.state.is_blocked');
+    }
+    public function isClient()
+    {
+        return $this->state == Config::get('customConstants.user.state.is_client');
+    }
+    public function isMerchant()
+    {
+        return $this->state == Config::get('customConstants.user.state.is_merchant');
     }
 }

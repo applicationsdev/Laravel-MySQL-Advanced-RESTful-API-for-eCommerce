@@ -13,12 +13,22 @@ class Category extends Model
         'title',
         'image_thumbnail',
         'description_short',
-        'status'
+        'status',
     ];
     
-    // DB relations
+    // DB relationships
     public function items()
     {
         return $this->hasMany(Item::class);
+    }
+    
+    // 'status' checkers
+    public function isNotActive()
+    {
+        return $this->status == Config::get('customConstants.category.status.is_not_active');
+    }
+    public function isActive()
+    {
+        return $this->status == Config::get('customConstants.category.status.is_active');
     }
 }

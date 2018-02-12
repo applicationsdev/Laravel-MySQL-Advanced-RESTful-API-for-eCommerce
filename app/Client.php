@@ -7,7 +7,7 @@ use App\Order;
 
 class Client extends User
 {
-    // DB relations
+    // DB relationships
     public function orders()
     {
         return $this->hasMany(Order::class);
