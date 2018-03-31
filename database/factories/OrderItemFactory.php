@@ -12,10 +12,13 @@ $factory->define(OrderItem::class, function (Faker $faker) {
     // and Item status can become 'is_not_available'
     
     // Get one random available product
-    $itemToOrder = Item::all()->where('available_qty', '>', 0)->random(1);
+    // In current testing I require 'available_qty' > 1
+    // to simulate in a simple way a few transactions
+    // that have more than 1 ordered qty
+    $itemToOrder = Item::all()->where('available_qty', '>', 1)->random(1);
     
     // Set OrderItem 'qty'
-    // (in current version I simulate B2C shops behavior)
+    // (in current version I simulate B2C shops behavior so I keep max qty=2)
     $orderItemQty = rand(1, 2);
     
     // Calculate OrderItem 'value'
