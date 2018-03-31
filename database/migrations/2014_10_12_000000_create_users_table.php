@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('postal_code', 20)->nullable();
             $table->string('tel', 20)->nullable();
             
-            $table->string('verify_token')->default(User::createVerifyToken());
+            $table->string('verify_token')->nullable();
             $table->string('state', 50)->default(Config::get('customConstants.user.state.is_not_verified'));
             
             $table->rememberToken();
