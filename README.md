@@ -1,33 +1,24 @@
 ### About
-- eCommerce Application
-- Back End: Laravel, MySQL, RESTful API
-- Front End: not included in current version
-
-### Environment
-- Environment Type: Development Environment
-- Developed & Tested using: Laravel 5.5.28, PHP 7.1.12, Node.js 8.9.4
-- Packages / Dependencies: [composer.json](https://github.com/applicationsdev/eCommerce-Laravel-MySQL-RESTful-API/blob/master/composer.json), [package.json](https://github.com/applicationsdev/eCommerce-Laravel-MySQL-RESTful-API/blob/master/package.json)
-- Syntax: PHP7
-- DBMS: MySQL
-
-### Architecture
-- Architectural Pattern: MVC
-- DBMS Type: RDBMS
-- Entity Relationship Diagram:
-
-![Entity Relationship Diagram](./.documentation/erd.png)
+- eCommerce RESTful API with Laravel & MySQL
 
 ### Get started
 coming soon..
 
-### License
-[eCommerce Laravel MySQL RESTful API](https://github.com/applicationsdev/eCommerce-Laravel-MySQL-RESTful-API)
+### Environment
+- Developed & Tested using: Laravel 5.5.28, PHP 7.1.12, Node.js 8.9.4
+- Packages / Dependencies: [composer.json](https://github.com/applicationsdev/eCommerce-Laravel-MySQL-RESTful-API/blob/master/composer.json), [package.json](https://github.com/applicationsdev/eCommerce-Laravel-MySQL-RESTful-API/blob/master/package.json)
 
+### Architecture
+- Entity Relationship Diagram:
+
+![Entity Relationship Diagram](./.documentation/erd.png)
+
+### License
 &copy; [Applications Developer](https://github.com/applicationsdev?tab=repositories), 2018
 
 Author's work is licensed under [MIT](https://opensource.org/licenses/MIT) License | By using this open source product you accept the [license terms](https://opensource.org/licenses/MIT) in full
 
-Frameworks, packages & web resources are properties of their respective developers and/or owners & are licensed by them
+Frameworks, packages & resources are properties of their respective developers and/or owners & are licensed by them
 
 ### Resources - References
 - [Laravel](https://laravel.com/)
