@@ -13,6 +13,8 @@ class CreateOrderItemsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+        
         Schema::create('order_items', function (Blueprint $table) {
             $table->increments('id');
             
@@ -27,6 +29,8 @@ class CreateOrderItemsTable extends Migration
             $table->foreign('item_id')->references('id')->on('items');
             $table->foreign('order_id')->references('id')->on('orders');
         });
+        
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

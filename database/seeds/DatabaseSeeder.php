@@ -60,5 +60,7 @@ class DatabaseSeeder extends Seeder
                     ->increment('value', $orderitem->value);
             }
         );
+        
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

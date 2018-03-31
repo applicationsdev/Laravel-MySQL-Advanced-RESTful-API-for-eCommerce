@@ -13,6 +13,8 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+        
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             
@@ -33,6 +35,8 @@ class CreateItemsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('merchant_id')->references('id')->on('users');
         });
+        
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
