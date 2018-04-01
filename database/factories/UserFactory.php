@@ -29,7 +29,7 @@ $factory->define(User::class, function (Faker $faker) {
         'postal_code' => $faker->postcode,
         'tel' => $faker->phoneNumber,
         
-        'verify_token' => User::createVerifyToken(),
+        'verify_token' => str_random(12),
         'state' => $faker->randomElement([
             Config::get('customConstants.user.state.is_not_verified'),
             Config::get('customConstants.user.state.is_client'),

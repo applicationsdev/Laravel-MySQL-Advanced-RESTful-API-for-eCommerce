@@ -1,9 +1,11 @@
 <?php
 
+// imports
 use Faker\Generator as Faker;
 use App\OrderItem;
 use App\Item;
 use App\Order;
+use Illuminate\Support\Facades\DB;
 
 $factory->define(OrderItem::class, function (Faker $faker) {
     
@@ -14,8 +16,8 @@ $factory->define(OrderItem::class, function (Faker $faker) {
     // Get one random available product
     // In current testing I require 'available_qty' > 1
     // to simulate in a simple way a few transactions
-    // that have more than 1 ordered qty
-    $itemToOrder = Item::all()->where('available_qty', '>', 1)->random(1);
+    // that can have more than 1 ordered qty
+    $itemToOrder = Item::inRandomOrder()->where('available_qty', '>', 1)->first();
     
     // Set OrderItem 'qty'
     // (in current version I simulate B2C shops behavior so I keep max qty=2)
@@ -24,29 +26,40 @@ $factory->define(OrderItem::class, function (Faker $faker) {
     // Calculate OrderItem 'value'
     $orderItemValue = $orderItemQty * $itemToOrder->catalog_price;
     
-    // Update Item data after this purchase
+    // Update Item table data after this purchase
     // (to simplify testing, Order 'status' is not examined in this app version
     // otherwise the Item data should be updated after payment is verified
     // and product gets dispatched from our physical warehouse)
+    DB::table('items')
+        ->where('id', $itemToOrder->id)
+        ->decrement('available_qty', $orderItemQty);
+    
+    // To avoid useless DB queries, I do a local check and then send DB query if needed
     $itemAvailableQty = $itemToOrder->available_qty;
     $itemAvailableQty -= $orderItemQty;
-        
-    Item::all()
-        ->where('id', '=', $itemToOrder->id)
-        ->update(['available_qty' => $itemAvailableQty]); // needs [] because it's a "key => value"
-        
     if ($itemAvailableQty == 0) {
-        Item::all()
-            ->where('id', '=', $itemToOrder->id)
+        DB::table('items')
+            ->where('id', $itemToOrder->id)
             ->update(['status' => Config::get('customConstants.item.status.is_not_available')]);
+            // needs [] because it's a "key => value"
     }
+    
+    // Fetching a valid order_id into the current OrderItem
+    // (to simplify testing, I have already executed OrderFactory before OrderItemFactory)
+    $order = Order::inRandomOrder()->first();
+    
+    // Increment Order's value by adding the current OrderItem's value
+    // (one Order can have many OrderItems)
+    DB::table('orders')
+        ->where('id', $order->id)
+        ->increment('value', $orderItemValue);
     
     // Export "Key => Value" array so DatabaseSeeder can generate fake OrderItems
     return [
         'qty' => $orderItemQty,
         'value' => $orderItemValue,
         'item_id' => $itemToOrder->id,
-        'order_id' => Order::all()->random(1)->id,
+        'order_id' => $order->id,
         // These fake data are generated for testing purposes
         // To simplify data generation, it is accepted that Order 'created_at' timestamp
         // will be a few seconds earlier than OrderItem 'created_at' timestamp

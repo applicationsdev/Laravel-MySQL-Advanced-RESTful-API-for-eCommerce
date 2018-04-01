@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('address_line2', 100)->nullable();
             $table->string('country_code', 20)->nullable();
             $table->string('postal_code', 20)->nullable();
-            $table->string('tel', 20)->nullable();
+            $table->string('tel', 30)->nullable();
             
             $table->string('verify_token')->nullable();
             $table->string('state', 50)->default(Config::get('customConstants.user.state.is_not_verified'));

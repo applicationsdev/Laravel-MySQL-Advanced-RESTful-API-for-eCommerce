@@ -52,14 +52,7 @@ class DatabaseSeeder extends Seeder
         factory(Category::class, $howManyCategories)->create();
         factory(Item::class, $howManyItems)->create();
         factory(Order::class, $howManyOrders)->create();
-        
-        factory(OrderItem::class, $howManyOrderItems)->create()->each(
-            function($orderitem){
-                Order::all()
-                    ->where('id', '=', $orderitem->order_id)
-                    ->increment('value', $orderitem->value);
-            }
-        );
+        factory(OrderItem::class, $howManyOrderItems)->create();
         
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
