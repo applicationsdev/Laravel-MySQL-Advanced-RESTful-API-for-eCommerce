@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// User
+Route::resource('users', 'UserController', ['except' => ['create', 'edit']]);
+Route::resource('clients', 'ClientController', ['only' => ['index', 'show']]);
+Route::resource('merchants', 'MerchantController', ['only' => ['index', 'show']]);
