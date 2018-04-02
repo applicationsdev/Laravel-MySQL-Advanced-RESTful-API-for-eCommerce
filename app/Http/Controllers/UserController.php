@@ -145,6 +145,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!$user = User::find($id)) {
+            
+            return response('Not Found', 404);
+            
+        } else {
+            
+            $user->delete();
+            
+            return response('OK', 200);
+        }
     }
 }
