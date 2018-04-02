@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 
+// To simplify development & testing of current version,
+// this controller is not using all of the User fields
+// (these unused fields are set to nullable in the User migration file)
+        
 class UserController extends Controller
 {
     /**
@@ -29,10 +33,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // To simplify development & testing of the current version,
-        // this controller is not using all of the User fields
-        // (unused fields are set to nullable in the User migration)
-        
         // Validation rules
         $rules = [
             'name' => 'max:50',
@@ -75,18 +75,15 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        if (!$user = User::find($id)) {
+            
+            return response('Not Found', 404);
+            
+        } else {
+            return response('OK', 200)
+                ->json(['data' => $user])
+                ->header('Content-Type', 'text/plain');
+        }
     }
 
     /**
@@ -98,7 +95,48 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (!$user = User::find($id)) {
+            
+            return response('Not Found', 404);
+            
+        } else {
+            // Validation rules
+            $rules = [
+                'name' => 'max:50',
+                'email' => 'email|unique:users',
+                'password' => 'min:8|max:100',
+                'photo' => 'max:300',
+            ];
+            
+            if (!$this->validate($request, $rules)) {
+                
+                return response('Bad Request', 400);
+                
+            } else {
+                
+                if ($request->has('name')) {
+                    $user->name = $request->name;
+                }
+                
+                if ($request->has('email')) {
+                    $user->email = $request->email;
+                }
+                
+                if ($request->has('password')) {
+                    $user->password = bcrypt($request->password);
+                }
+                
+                if ($request->has('photo')) {
+                    $user->photo = $request->photo;
+                }
+                
+                $user->save();
+                
+                return response('OK', 200)
+                    ->json(['data' => $user])
+                    ->header('Content-Type', 'text/plain');
+            }
+        }
     }
 
     /**
