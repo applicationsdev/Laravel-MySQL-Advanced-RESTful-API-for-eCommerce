@@ -21,8 +21,9 @@ class UserController extends Controller
         $users = User::all();
         
         return response('OK', 200)
-            ->json(['data' => $users])
-            ->header('Content-Type', 'text/plain');
+            ->json(['data' => $users]);
+        
+        //json() method automatically sets the Content-Type header to application/json
     }
 
     /**
@@ -35,10 +36,10 @@ class UserController extends Controller
     {
         // Validation rules
         $rules = [
-            'name' => 'max:50',
+            'name' => 'nullable|max:50',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|max:100',
-            'photo' => 'max:300',
+            'photo' => 'nullable|max:300',
         ];
         
         if (!$this->validate($request, $rules)) {
@@ -62,8 +63,7 @@ class UserController extends Controller
             $user = User::create($data);
             
             return response('Created', 201)
-                ->json(['data' => $user])
-                ->header('Content-Type', 'text/plain');
+                ->json(['data' => $user]);
         }
     }
 
@@ -81,8 +81,7 @@ class UserController extends Controller
             
         } else {
             return response('OK', 200)
-                ->json(['data' => $user])
-                ->header('Content-Type', 'text/plain');
+                ->json(['data' => $user]);
         }
     }
 
@@ -102,10 +101,10 @@ class UserController extends Controller
         } else {
             // Validation rules
             $rules = [
-                'name' => 'max:50',
-                'email' => 'email|unique:users',
-                'password' => 'min:8|max:100',
-                'photo' => 'max:300',
+                'name' => 'nullable|max:50',
+                'email' => 'nullable|email|unique:users',
+                'password' => 'nullable|min:8|max:100',
+                'photo' => 'nullable|max:300',
             ];
             
             if (!$this->validate($request, $rules)) {
@@ -133,8 +132,7 @@ class UserController extends Controller
                 $user->save();
                 
                 return response('OK', 200)
-                    ->json(['data' => $user])
-                    ->header('Content-Type', 'text/plain');
+                    ->json(['data' => $user]);
             }
         }
     }
