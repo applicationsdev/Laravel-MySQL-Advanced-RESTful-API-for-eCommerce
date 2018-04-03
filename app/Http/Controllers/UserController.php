@@ -20,9 +20,7 @@ class UserController extends Controller
     {
         $users = User::all();
         
-        return response('OK', 200)
-            ->json(['data' => $users]);
-        
+        return response()->json(['data' => $users], 200);
         //json() method automatically sets the Content-Type header to application/json
     }
 
@@ -62,8 +60,8 @@ class UserController extends Controller
             
             $user = User::create($data);
             
-            return response('Created', 201)
-                ->json(['data' => $user]);
+            return response()
+                ->json(['data' => $user], 201);
         }
     }
 
@@ -80,8 +78,8 @@ class UserController extends Controller
             return response('Not Found', 404);
             
         } else {
-            return response('OK', 200)
-                ->json(['data' => $user]);
+            return response()
+                ->json(['data' => $user], 200);
         }
     }
 
@@ -131,8 +129,8 @@ class UserController extends Controller
                 
                 $user->save();
                 
-                return response('OK', 200)
-                    ->json(['data' => $user]);
+                return response()
+                    ->json(['data' => $user], 200);
             }
         }
     }
