@@ -68,12 +68,12 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  str  $email
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($email)
     {
-        if (!$user = User::find($id)) {
+        if (!$user = User::where('email', '=', $email)->first()) {
             
             return response('Not Found', 404);
             
@@ -87,12 +87,12 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  str  $email
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $email)
     {
-        if (!$user = User::find($id)) {
+        if (!$user = User::where('email', '=', $email)->first()) {
             
             return response('Not Found', 404);
             
@@ -138,12 +138,12 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  str  $email
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($email)
     {
-        if (!$user = User::find($id)) {
+        if (!$user = User::where('email', '=', $email)->first()) {
             
             return response('Not Found', 404);
             
